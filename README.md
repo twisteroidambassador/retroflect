@@ -134,3 +134,13 @@ running on localhost. For the server, it looks like the client is
 connecting from the reflect address. Neither the client nor the server
 will realize that the other party is running on the same system.
 Mission accomplished!
+
+
+## Known issues
+
+If a server port is shielded, any attempt to access it via the
+localhost address (`127.0.0.1:server-port`, `[::1]:server-port`, etc.)
+may also fail. This is because pydivert still uses WinDivert 1.3,
+and WinDivert only added the "loopback" filter in 1.4, so loopback
+traffic to shield ports are also filtered and dropped. Re-injecting
+loopback packets doesn't seem to work properly, either.
