@@ -125,7 +125,7 @@ drivers are bundled in.
 Building the C++ version of retroflect requires Visual Studio and
 [WinDivert 1.4.3](https://reqrypt.org/windivert.html). I used Visual
 Studio 2017 Community to develop and build the code; other versions
-may also work.
+may also work. See `build.md` for details.
 
 
 #### Python
