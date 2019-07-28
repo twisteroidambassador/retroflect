@@ -42,10 +42,10 @@ def reflect(
         f'{"ipv6" if host.version == 6 else "ip"}.DstAddr == {host}'
         for host in reflect_hosts
     )
-    filter_str = f'outbound and ({filter_hosts})'
+    filter_str = f'outbound and (tcp or udp) and ({filter_hosts})'
     if shield_ports:
         filter_ports = ' or '.join(
-            f'tcp.DstPort == {port}' for port in shield_ports)
+            f'tcp.DstPort == {port} or udp.DstPort == {port}' for port in shield_ports)
         filter_str = f'({filter_str}) or ' \
                      f'(inbound and ({filter_ports}))'
 
