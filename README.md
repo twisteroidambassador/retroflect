@@ -29,14 +29,14 @@ network traffic*
 
 Retroflect reflects outgoing network traffic back at the sender.
 When retroflect is running on a system with one or more
-"reflect addresses" configured, any network traffic sent by the
+"reflect addresses" configured, any (TCP and UDP) network traffic sent by the
 system towards a reflect address are filtered, modified and
 re-injected, so it looks like the traffic is coming from the reflect
 address towards the system instead.
 
 Additionally, retroflect can also be configured with zero or more
 "shield ports". When configured, retroflect acts like a firewall and
-drops any incoming traffic destined for these ports.
+drops any incoming (TCP and UDP) traffic destined for these ports.
 
 
 ### Use Case
@@ -183,13 +183,7 @@ Mission accomplished!
 
 ### Known issues
 
-The C++ and Python versions of retroflect currently have different
-behavior. The C++ version only reflects TCP traffic towards
-reflect addresses, and only shields incoming TCP traffic towards shield
-ports. The Python version reflects all network traffic towards reflect
-addresses, but also only shields incoming TCP traffic.
-
-Also, with the Python version,
+With the Python version,
 when a server port is shielded any attempt to access it via the
 localhost address (`127.0.0.1:server-port`, `[::1]:server-port`, etc.)
 will also fail. This is because pydivert still uses WinDivert 1.3,
